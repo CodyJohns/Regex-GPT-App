@@ -1,24 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import Main from "./pages/Main";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+          <div className={"d-flex justify-content-center"}>
+              <div className={"d-flex pt-4"}>
+                  <img src={require("./assets/regex-gpt.png")} className={"logo"} />
+                  <div className={"ps-3 pt-2"}>
+                      <h2> { "/^{Regex-GPT}$/" }</h2>
+                  </div>
+              </div>
+          </div>
+          <Main />
+      </div>
   );
 }
 
