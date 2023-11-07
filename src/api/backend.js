@@ -14,8 +14,8 @@ export const sendGPTRequest = (query, setResponse, addToHistory, setLoading, set
         data: query
     }).then(response => {
             console.log(response.data);
-            setResponse(response.data);
-            addToHistory(response.data);
+            setResponse(response.data.data);
+            addToHistory(response.data.data);
             setError(false);
             setLoading(false);
         }).catch(error => {
