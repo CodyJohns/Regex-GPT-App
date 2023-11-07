@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Regex-GPT-App/static/css/main.0e95eae8.css",
-    "main.js": "/Regex-GPT-App/static/js/main.dfd1a237.js",
+    "main.js": "/Regex-GPT-App/static/js/main.d5d02e52.js",
     "static/js/787.7f75f12b.chunk.js": "/Regex-GPT-App/static/js/787.7f75f12b.chunk.js",
     "static/media/regex-gpt.png": "/Regex-GPT-App/static/media/regex-gpt.e25b09e2f8352b219c11.png",
     "index.html": "/Regex-GPT-App/index.html",
     "main.0e95eae8.css.map": "/Regex-GPT-App/static/css/main.0e95eae8.css.map",
-    "main.dfd1a237.js.map": "/Regex-GPT-App/static/js/main.dfd1a237.js.map",
+    "main.d5d02e52.js.map": "/Regex-GPT-App/static/js/main.d5d02e52.js.map",
     "787.7f75f12b.chunk.js.map": "/Regex-GPT-App/static/js/787.7f75f12b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0e95eae8.css",
-    "static/js/main.dfd1a237.js"
+    "static/js/main.d5d02e52.js"
   ]
 }
