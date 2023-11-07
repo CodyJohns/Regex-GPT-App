@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.0e95eae8.css",
-    "main.js": "/static/js/main.90600b36.js",
-    "static/js/787.7f75f12b.chunk.js": "/static/js/787.7f75f12b.chunk.js",
-    "static/media/regex-gpt.png": "/static/media/regex-gpt.e25b09e2f8352b219c11.png",
-    "index.html": "/index.html",
-    "main.0e95eae8.css.map": "/static/css/main.0e95eae8.css.map",
-    "main.90600b36.js.map": "/static/js/main.90600b36.js.map",
-    "787.7f75f12b.chunk.js.map": "/static/js/787.7f75f12b.chunk.js.map"
+    "main.css": "/Regex-GPT-App/static/css/main.0e95eae8.css",
+    "main.js": "/Regex-GPT-App/static/js/main.dfd1a237.js",
+    "static/js/787.7f75f12b.chunk.js": "/Regex-GPT-App/static/js/787.7f75f12b.chunk.js",
+    "static/media/regex-gpt.png": "/Regex-GPT-App/static/media/regex-gpt.e25b09e2f8352b219c11.png",
+    "index.html": "/Regex-GPT-App/index.html",
+    "main.0e95eae8.css.map": "/Regex-GPT-App/static/css/main.0e95eae8.css.map",
+    "main.dfd1a237.js.map": "/Regex-GPT-App/static/js/main.dfd1a237.js.map",
+    "787.7f75f12b.chunk.js.map": "/Regex-GPT-App/static/js/787.7f75f12b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0e95eae8.css",
-    "static/js/main.90600b36.js"
+    "static/js/main.dfd1a237.js"
   ]
 }
