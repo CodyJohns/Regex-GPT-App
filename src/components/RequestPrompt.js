@@ -12,6 +12,7 @@ const RequestPrompt = ({ loading, error, onClick }) => {
                     id="exampleFormControlTextarea1"
                     rows="3"
                     value={prompt}
+                    disabled={loading}
                     onChange={(event) => setPrompt(event.target.value)}
                 ></textarea>
             </div>
