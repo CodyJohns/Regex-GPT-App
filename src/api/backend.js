@@ -1,15 +1,24 @@
-import {getMockRegex} from "../tests/testing";
+//import {getMockRegex} from "../tests/testing";
+import axios from "axios";
+import {config} from "./Configuration";
 
 export const sendGPTRequest = (query, setResponse, addToHistory, setLoading, setError) => {
     setLoading(true);
 
-    getMockRegex() //replace later with axios call
-        .then(response => {
+    axios({
+        url: config.host + '/query',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain'
+        },
+        data: query
+    }).then(response => {
+            console.log(response.data);
             setResponse(response.data);
             addToHistory(response.data);
+            setError(false);
             setLoading(false);
-        })
-        .catch(error => {
+        }).catch(error => {
             console.log(error);
             setError(true);
             setLoading(false);

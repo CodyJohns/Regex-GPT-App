@@ -25,7 +25,7 @@ const RequestPrompt = ({ loading, error, onClick }) => {
             <div>
                 <button
                     className={"btn btn-primary"}
-                    disabled={loading || error}
+                    disabled={loading}
                     onClick={() => {
                         onClick(prompt);
                     }}
