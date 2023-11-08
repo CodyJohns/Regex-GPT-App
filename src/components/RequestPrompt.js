@@ -26,11 +26,18 @@ const RequestPrompt = ({ loading, error, onClick }) => {
             <div>
                 <button
                     className={"btn btn-primary"}
-                    disabled={loading}
+                    disabled={loading || prompt === ""}
                     onClick={() => {
                         onClick(prompt);
                     }}
-                >Submit</button>
+                >
+                    {
+                        (!loading) ?  "Submit" :
+                            <div className="spinner-border spinner-border-sm text-light" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                    }
+                </button>
             </div>
         </div>
     );

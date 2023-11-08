@@ -1,4 +1,3 @@
-import {useState} from "react";
 import HistoryItem from "./HistoryItem";
 
 const renderHistory = (history, loadRegex) => {

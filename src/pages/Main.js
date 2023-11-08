@@ -40,16 +40,17 @@ const Main = () => {
                             <div>
                                 <RegexResult
                                     result={regex}
+                                    setValue={(val) => setRegex(val)}
                                 />
                             </div>
                         </div>
                         <div className={"row"}>
-                            <div className={"col-12 col-sm-6"}>
+                            <div className={"col-12 col-sm-7"}>
                                 <TestCases
                                     value={regex}
                                 />
                             </div>
-                            <div className={"col-12 col-sm-6"}>
+                            <div className={"col-12 col-sm-5"}>
                                 <History
                                     data={history}
                                     setData={setHistory}

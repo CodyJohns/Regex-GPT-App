@@ -1,16 +1,18 @@
 
-const RegexResult = ({ result }) => {
+const RegexResult = ({ result, setValue }) => {
     return (
         <div>
-            {
-                (result === "") ? <div></div> :
-                <div className={"content-panel primary-color"}>
-                    <div>
-                        <label for={"result"} className={"form-label"}>Result</label>
-                        <input type={"text"} className={"form-control"} value={result} disabled={true} />
-                    </div>
+            <div className={"content-panel primary-color"}>
+                <div>
+                    <label htmlFor={"result"} className={"form-label"}>Result</label>
+                    <input
+                        type={"text"}
+                        className={"form-control"}
+                        value={result}
+                        onChange={(event) => setValue(event.target.value)}
+                    />
                 </div>
-            }
+            </div>
         </div>
     );
 };

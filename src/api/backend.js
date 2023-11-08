@@ -3,6 +3,9 @@ import axios from "axios";
 import {config} from "./Configuration";
 
 export const sendGPTRequest = (query, setResponse, addToHistory, setLoading, setError) => {
+    if(query === "")
+        return;
+
     setLoading(true);
 
     axios({
@@ -13,7 +16,6 @@ export const sendGPTRequest = (query, setResponse, addToHistory, setLoading, set
         },
         data: query
     }).then(response => {
-            console.log(response.data);
             setResponse(response.data.data);
             addToHistory(response.data.data);
             setError(false);

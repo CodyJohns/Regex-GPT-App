@@ -66,6 +66,7 @@ input.failed {
 
 .max-width-1600 {
     max-width: 1600px;
+    margin: 0 auto;
 }
 
 .bg-color {
@@ -74,6 +75,10 @@ input.failed {
 
 .primary-color {
     background-color: #495057;
+}
+
+.secondary-color {
+    background-color: #50575e;
 }
 
 .accent-color {
