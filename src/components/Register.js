@@ -1,49 +1,19 @@
-import {GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google';
-import AlertBox from "./AlertBox";
 import {useState} from "react";
-import {googleLogin, userLogin} from "../api/backend";
-import {useCookies} from "react-cookie";
+import {userLogin} from "../api/backend";
+import AlertBox from "./AlertBox";
 
-const LoginOptions = ({ closeModal }) => {
-    const [cookies, setCookie] = useCookies(['authtoken']);
+const Register = ({ closeModal }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [responseMsg, setResponseMsg] = useState("");
-    const [loginID, setLoginID] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const completeLoginProcess = (data) => {
-        let expiration = new Date();
-        expiration.setDate(expiration.getDate() + 7);
-        setCookie('authtoken', data, { expires: expiration });
-        closeModal();
-    };
+    const [confpassword, setConfPassword] = useState("");
 
     return (
         <div>
             <div className={"mb-3"}>
-                <h4 className={"text-center"}>Login to continue</h4>
-            </div>
-            <div className={"mb-3"}>
-                <GoogleOAuthProvider clientId="1026110361137-1pjoqo75hg9a1eitiqsvffn73f731ojg.apps.googleusercontent.com">
-                    <GoogleLogin
-                        onSuccess={response => {
-                            googleLogin(response.credential, setLoading, setError, setResponseMsg, (data) => completeLoginProcess(data));
-                        }}
-                        onError={() => {
-                            setResponseMsg("Error logging in with Google");
-                            setError(true);
-                        }}
-                        size={"large"}
-                        width={"368px"}
-                        theme={"filled_black"}
-                    />
-                </GoogleOAuthProvider>
-            </div>
-            <div className={"mb-3 mt-4"}>
-                <div className={"h-line primary-color"}>
-                    <div className={"secondary-color ps-2 pe-2"}>or</div>
-                </div>
+                <h4 className={"text-center"}>Register to continue</h4>
             </div>
             <div>
                 <div className={"mb-1"}>
@@ -52,11 +22,11 @@ const LoginOptions = ({ closeModal }) => {
                         type={"email"}
                         className={"form-control"}
                         disabled={loading}
-                        value={loginID}
-                        onChange={event => setLoginID(event.target.value)}
+                        value={email}
+                        onChange={event => setEmail(event.target.value)}
                     />
                 </div>
-                <div className={"mb-3"}>
+                <div className={"mb-1"}>
                     <label className={"form-label"}>Password</label>
                     <input
                         type={"password"}
@@ -67,11 +37,21 @@ const LoginOptions = ({ closeModal }) => {
                     />
                 </div>
                 <div className={"mb-3"}>
+                    <label className={"form-label"}>Re-type Password</label>
+                    <input
+                        type={"password"}
+                        className={"form-control"}
+                        disabled={loading}
+                        value={confpassword}
+                        onChange={event => setConfPassword(event.target.value)}
+                    />
+                </div>
+                <div className={"mb-3"}>
                     <div className={"d-grid gap-2"}>
                         <button
                             className={"btn btn-primary"}
                             onClick={() => {
-                                userLogin(loginID, password, setLoading, setError, setResponseMsg, (data) => completeLoginProcess(data));
+                                console.log("Registering...");
                             }}
                             disabled={loading}
                         >
@@ -96,4 +76,4 @@ const LoginOptions = ({ closeModal }) => {
     );
 };
 
-export default LoginOptions;
+export default Register;
