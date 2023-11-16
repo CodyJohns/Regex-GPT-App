@@ -14,6 +14,20 @@ export const getMockRegex = () => {
     ];
 
     return new Promise((resolve, reject) => {
-        resolve(regex[Math.floor(Math.random() * regex.length)]);
+        resolve({
+            data: {
+                data: regex[Math.floor(Math.random() * regex.length)]
+            }
+        });
+    });
+};
+
+export const getMockLogin = () => {
+    return new Promise((resolve, reject) => {
+        resolve({
+           data: {
+                authtoken: "1234567890"
+           }
+        });
     });
 };
