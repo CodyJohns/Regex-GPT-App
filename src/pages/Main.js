@@ -4,8 +4,11 @@ import History from "../components/History";
 import RegexResult from "../components/RegexResult";
 import {useState} from "react";
 import {sendGPTRequest} from "../api/backend";
+import Modal from "../components/Modal";
+import {CookiesProvider, useCookies} from "react-cookie";
 
 const Main = () => {
+    const [cookies, setCookie] = useCookies(['authtoken']);
     const [regex, setRegex] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -17,51 +20,55 @@ const Main = () => {
     };
 
     return (
-        <div>
-            <div className={"max-width-1600 pt-4"}>
-                <div className={"row"}>
-                    <div className={"col-10 offset-1 col-sm-10 offset-sm-1 col-md-8 offset-md-2"}>
-                        <div>
-                            <RequestPrompt
-                                onClick={(prompt) => {
-                                    sendGPTRequest(
-                                        prompt,
-                                        setRegex,
-                                        (response) => addHistory(response),
-                                        setLoading,
-                                        setError
-                                    );
-                                }}
-                                loading={loading}
-                                error={error}
-                            />
-                        </div>
-                        <div>
+        <CookiesProvider defaultSetOptions={{ path: '/' }}>
+            <div>
+                <Modal />
+                <div className={"max-width-1600 pt-4"}>
+                    <div className={"row"}>
+                        <div className={"col-10 offset-1 col-sm-10 offset-sm-1 col-md-8 offset-md-2"}>
                             <div>
-                                <RegexResult
-                                    result={regex}
-                                    setValue={(val) => setRegex(val)}
+                                <RequestPrompt
+                                    onClick={(prompt) => {
+                                        sendGPTRequest(
+                                            prompt,
+                                            cookies.authtoken,
+                                            setRegex,
+                                            (response) => addHistory(response),
+                                            setLoading,
+                                            setError
+                                        );
+                                    }}
+                                    loading={loading}
+                                    error={error}
                                 />
                             </div>
-                        </div>
-                        <div className={"row"}>
-                            <div className={"col-12 col-sm-7"}>
-                                <TestCases
-                                    value={regex}
-                                />
+                            <div>
+                                <div>
+                                    <RegexResult
+                                        result={regex}
+                                        setValue={(val) => setRegex(val)}
+                                    />
+                                </div>
                             </div>
-                            <div className={"col-12 col-sm-5"}>
-                                <History
-                                    data={history}
-                                    setData={setHistory}
-                                    loadRegex={(val) => setRegex(val)}
-                                />
+                            <div className={"row"}>
+                                <div className={"col-12 col-sm-7"}>
+                                    <TestCases
+                                        value={regex}
+                                    />
+                                </div>
+                                <div className={"col-12 col-sm-5"}>
+                                    <History
+                                        data={history}
+                                        setData={setHistory}
+                                        loadRegex={(val) => setRegex(val)}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </CookiesProvider>
     );
 };
 

@@ -54,7 +54,7 @@ input.passed {
 
 input.failed {
     background-color: #212529 !important;
-    border: 1px solid red !important;
+    border: 1px solid #de4242 !important;
     color: #CCC !important;
 }
 
@@ -90,6 +90,47 @@ input.failed {
     height: 60px;
 }
 
-h2 {
+h2, h4 {
+    color: #CCC !important;
+}
+
+.width-fixed {
+    margin: 20px;
+    width: 400px;
+}
+
+.bkg-blur {
+    backdrop-filter: blur(10px);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+}
+
+.h-line {
+    height: 1px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.h-line > div {
+    margin-top: -12px;
+    color: #CCC !important;
+}
+
+.message {
+    padding: 12px !important;
+    border-radius: 8px;
     color: white !important;
+}
+
+.notice.message {
+    background-color: #212529;
+}
+
+.alert.message {
+    background-color: #de4242;
 }
