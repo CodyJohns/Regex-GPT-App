@@ -2,7 +2,7 @@ import axios from "axios";
 import {config} from "./Configuration";
 import {getMockLogin, getMockRegex} from "../tests/testing";
 
-export const sendGPTRequest = (query, token, setResponse, addToHistory, setLoading, setError) => {
+export const sendGPTRequest = (query, token, setResponse, addToHistory, setLoading, setError, setQueryErrorMessage) => {
     if(query === "")
         return;
 
@@ -27,13 +27,15 @@ export const sendGPTRequest = (query, token, setResponse, addToHistory, setLoadi
                 setError(false);
                 setLoading(false);
             } else {
-                setResponse(response.data.message);
+                setResponse("");
+                setQueryErrorMessage(response.data.message);
                 setError(true);
                 setLoading(false);
             }
         }).catch(error => {
             console.log(error);
             setError(true);
+            setQueryErrorMessage(error.message);
             setLoading(false);
         });
 };

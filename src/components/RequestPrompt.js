@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const RequestPrompt = ({ loading, error, onClick }) => {
+const RequestPrompt = ({ loading, onClick }) => {
     const [prompt, setPrompt] = useState("");
 
     return (
@@ -15,13 +15,6 @@ const RequestPrompt = ({ loading, error, onClick }) => {
                     disabled={loading}
                     onChange={(event) => setPrompt(event.target.value)}
                 ></textarea>
-            </div>
-            <div>
-                {
-                    (error) ?
-                        <p>An error occurred. Please try again later.</p> :
-                        <div></div>
-                }
             </div>
             <div>
                 <button

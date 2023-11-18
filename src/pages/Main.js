@@ -6,6 +6,7 @@ import {useState} from "react";
 import {sendGPTRequest} from "../api/backend";
 import Modal from "../components/Modal";
 import {CookiesProvider, useCookies} from "react-cookie";
+import AlertBox from "../components/AlertBox";
 
 const Main = () => {
     const [cookies, setCookie] = useCookies(['authtoken']);
@@ -13,6 +14,7 @@ const Main = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [history, setHistory] = useState([]);
+    const [queryErrorMessage, setQueryErrorMessage] = useState("");
 
     const addHistory = (value) => {
         let newHistory = history.concat([{ id: history.length, value: value }]);
@@ -35,12 +37,23 @@ const Main = () => {
                                             setRegex,
                                             (response) => addHistory(response),
                                             setLoading,
-                                            setError
+                                            setError,
+                                            setQueryErrorMessage
                                         );
                                     }}
                                     loading={loading}
-                                    error={error}
                                 />
+                            </div>
+                            <div>
+                                {
+                                    (error) ?
+                                        <div className={"pt-1 pb-1"}>
+                                            <AlertBox
+                                                visible={queryErrorMessage.length > 0}
+                                                text={queryErrorMessage}
+                                            />
+                                        </div> : <div></div>
+                                }
                             </div>
                             <div>
                                 <div>
