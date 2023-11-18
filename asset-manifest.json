@@ -1,16 +1,14 @@
 {
   "files": {
-    "main.css": "/Regex-GPT-App/static/css/main.8feb3ac8.css",
-    "main.js": "/Regex-GPT-App/static/js/main.7af9888c.js",
-    "static/js/787.7f75f12b.chunk.js": "/Regex-GPT-App/static/js/787.7f75f12b.chunk.js",
+    "main.css": "/Regex-GPT-App/static/css/main.6a097dcc.css",
+    "main.js": "/Regex-GPT-App/static/js/main.1664078b.js",
     "static/media/regex-gpt.png": "/Regex-GPT-App/static/media/regex-gpt.e25b09e2f8352b219c11.png",
     "index.html": "/Regex-GPT-App/index.html",
-    "main.8feb3ac8.css.map": "/Regex-GPT-App/static/css/main.8feb3ac8.css.map",
-    "main.7af9888c.js.map": "/Regex-GPT-App/static/js/main.7af9888c.js.map",
-    "787.7f75f12b.chunk.js.map": "/Regex-GPT-App/static/js/787.7f75f12b.chunk.js.map"
+    "main.6a097dcc.css.map": "/Regex-GPT-App/static/css/main.6a097dcc.css.map",
+    "main.1664078b.js.map": "/Regex-GPT-App/static/js/main.1664078b.js.map"
   },
   "entrypoints": [
-    "static/css/main.8feb3ac8.css",
-    "static/js/main.7af9888c.js"
+    "static/css/main.6a097dcc.css",
+    "static/js/main.1664078b.js"
   ]
 }
