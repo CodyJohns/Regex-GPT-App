@@ -1,14 +1,25 @@
 import {useState} from "react";
-import {userLogin} from "../api/backend";
 import AlertBox from "./AlertBox";
+import {userRegister} from "../api/backend";
+import {useCookies} from "react-cookie";
+import PasswordStrengthMeter from "./PasswordStrengthMeter";
 
 const Register = ({ closeModal }) => {
+    const [cookies, setCookie] = useCookies(['authtoken']);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [responseMsg, setResponseMsg] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confpassword, setConfPassword] = useState("");
+    const [validPassword, setValidPassword] = useState(false);
+
+    const completeRegistration = (data) => {
+        let expiration = new Date();
+        expiration.setDate(expiration.getDate() + 7);
+        setCookie('authtoken', data, { expires: expiration });
+        closeModal();
+    };
 
     return (
         <div>
@@ -36,6 +47,14 @@ const Register = ({ closeModal }) => {
                         onChange={event => setPassword(event.target.value)}
                     />
                 </div>
+                <div className={"mb-1"}>
+                    <PasswordStrengthMeter
+                        password={password}
+                        isValid={(val) => {
+                            setValidPassword(val);
+                        }}
+                    />
+                </div>
                 <div className={"mb-3"}>
                     <label className={"form-label"}>Re-type Password</label>
                     <input
@@ -51,7 +70,7 @@ const Register = ({ closeModal }) => {
                         <button
                             className={"btn btn-primary"}
                             onClick={() => {
-                                console.log("Registering...");
+                                userRegister(email, password, confpassword, validPassword, setLoading, setError, setResponseMsg, (data) => completeRegistration(data));
                             }}
                             disabled={loading}
                         >

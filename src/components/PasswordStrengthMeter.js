@@ -34,7 +34,6 @@ const PasswordStrengthMeter = ({ password, isValid }) => {
         })
 
         setWeight(totalWeight);
-        console.log(totalWeight);
         isValid(totalWeight >= 5);
     };
 
@@ -52,7 +51,7 @@ const PasswordStrengthMeter = ({ password, isValid }) => {
             {
                 (password.length > 0) ?
                     <div className={"password-meter-container"}>
-                        <div className={"d-flex justify-content-between"}>
+                        <div className={"d-flex justify-content-between mb-1"}>
                             <span>Strength:</span>
                             <span><strong>{ getClasses() }</strong></span>
                         </div>

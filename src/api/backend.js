@@ -107,3 +107,62 @@ export const userLogin = (id, password, setLoading, setError, setResponseMsg, co
             setLoading(false);
         });
 };
+
+export const userRegister = (email, password, confpassword, passwordValid, setLoading, setError, setResponseMsg, completeRegistration) => {
+    const validEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    setLoading(true);
+    setError(false);
+    setResponseMsg("");
+
+    if(!validEmail.test(email)) {
+        setResponseMsg("Please enter a valid email.")
+        setError(true);
+        setLoading(false);
+        return;
+    }
+
+    if(!passwordValid) {
+        setResponseMsg("Please enter a strong password.")
+        setError(true);
+        setLoading(false);
+        return;
+    }
+
+    if(password !== confpassword) {
+        setResponseMsg("Passwords do not match.")
+        setError(true);
+        setLoading(false);
+        return;
+    }
+
+    let data = {
+        id: email,
+        password: password
+    };
+
+    axios({
+        url: config.host + '/register',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain'
+        },
+        data: JSON.stringify(data)
+    }).then(response => {
+            if (response.data.status === 200) {
+                setResponseMsg("");
+                setError(false);
+                setLoading(false);
+                completeRegistration(response.data.authtoken);
+            } else {
+                setResponseMsg(response.data.message);
+                setError(true);
+                setLoading(false);
+            }
+        }).catch(error => {
+            console.log(error);
+            setResponseMsg(error.message);
+            setError(true);
+            setLoading(false);
+        });
+};
