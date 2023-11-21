@@ -12,7 +12,6 @@ const Modal = () => {
     const modal_classes = visible ? "bkg-blur d-flex justify-content-center align-items-center" : "bkg-blur d-flex justify-content-center align-items-center d-none";
 
     useEffect(() => {
-        console.log(cookies.authtoken);
         setVisible(cookies.authtoken === null || cookies.authtoken === undefined)
     }, [cookies.authtoken]);
 

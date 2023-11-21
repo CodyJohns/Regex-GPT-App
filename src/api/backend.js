@@ -42,7 +42,6 @@ export const sendGPTRequest = (query, token, setResponse, addToHistory, setLoadi
 
 export const googleLogin = (credential, setLoading, setError, setResponseMsg, completeLogin) => {
     setLoading(true);
-    console.log(credential);
 
     let data = {
         google_cred: credential
@@ -167,4 +166,29 @@ export const userRegister = (email, password, confpassword, passwordValid, setLo
             setError(true);
             setLoading(false);
         });
+};
+
+export const getAccountStatus = (authtoken, setAccountData) => {
+
+    let data = {
+        authtoken: authtoken,
+    };
+
+    axios({
+        url: config.host + '/account/status',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain'
+        },
+        data: JSON.stringify(data)
+    }).then(response => {
+        if (response.data.status === 200) {
+            setAccountData(response.data.data);
+        } else {
+            setAccountData({ error: true });
+        }
+    }).catch(error => {
+        console.log(error);
+        setAccountData({ error: true });
+    });
 };
