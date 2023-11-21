@@ -21,7 +21,7 @@ input.failed {
 }
 
 .content-panel {
-    padding: 16px;
+    padding: 12px;
     border-radius: 8px;
     margin-bottom: 16px;
 }
@@ -125,4 +125,8 @@ h2, h4 {
 
 .password-meter-container span {
     color: #CCC;
+}
+
+.free-tier-message {
+    font-size: 14px;
 }
