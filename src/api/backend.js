@@ -168,7 +168,7 @@ export const userRegister = (email, password, confpassword, passwordValid, setLo
         });
 };
 
-export const getAccountStatus = (authtoken, setAccountData) => {
+export const getAccountStatus = (authtoken, accountData, setAccountData) => {
 
     let data = {
         authtoken: authtoken,
@@ -189,6 +189,7 @@ export const getAccountStatus = (authtoken, setAccountData) => {
         }
     }).catch(error => {
         console.log(error);
-        setAccountData({ error: true });
+        if(!accountData)
+            setAccountData({ error: true });
     });
 };
