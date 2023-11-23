@@ -19,10 +19,6 @@ const AccountStatus = ({ accountData }) => {
                     </div>
                     <div>
                         <button
-                            data-bs-container="body"
-                            data-bs-toggle="popover"
-                            data-bs-placement="top"
-                            data-bs-content="Top popover"
                             className={"btn btn-outline-warning"}>
                             Upgrade Account
                         </button>
@@ -37,10 +33,6 @@ const AccountStatus = ({ accountData }) => {
                     </div>
                     <div>
                         <button
-                            data-bs-container="body"
-                            data-bs-toggle="popover"
-                            data-bs-placement="top"
-                            data-bs-content="Top popover"
                             className={"btn btn-outline-info"}>
                             Manage Account
                         </button>
