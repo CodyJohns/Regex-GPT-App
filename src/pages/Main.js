@@ -8,10 +8,12 @@ import Modal from "../components/Modal";
 import {CookiesProvider, useCookies} from "react-cookie";
 import AlertBox from "../components/AlertBox";
 import AccountStatus from "../components/AccountStatus";
+import Footer from "../components/Footer";
 
 const Main = () => {
     const [cookies, setCookie] = useCookies(['authtoken']);
     const [regex, setRegex] = useState("");
+    const [hash, setHash] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [history, setHistory] = useState([]);
@@ -25,7 +27,7 @@ const Main = () => {
 
     useEffect(() => {
         getAccountStatus(cookies.authtoken, accountData, setAccountData);
-    }, [cookies.authtoken, regex]);
+    }, [cookies.authtoken, hash]);
 
     return (
         <CookiesProvider defaultSetOptions={{ path: '/' }}>
@@ -46,6 +48,7 @@ const Main = () => {
                                             prompt,
                                             cookies.authtoken,
                                             setRegex,
+                                            setHash,
                                             (response) => addHistory(response),
                                             setLoading,
                                             setError,
@@ -90,6 +93,9 @@ const Main = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <Footer />
                 </div>
             </div>
         </CookiesProvider>

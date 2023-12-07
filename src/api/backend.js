@@ -1,8 +1,9 @@
 import axios from "axios";
 import {config} from "./Configuration";
 import {getMockLogin, getMockRegex} from "../tests/testing";
+import md5 from "md5";
 
-export const sendGPTRequest = (query, token, setResponse, addToHistory, setLoading, setError, setQueryErrorMessage) => {
+export const sendGPTRequest = (query, token, setResponse, setHash, addToHistory, setLoading, setError, setQueryErrorMessage) => {
     if(query === "")
         return;
 
@@ -21,6 +22,8 @@ export const sendGPTRequest = (query, token, setResponse, addToHistory, setLoadi
         },
         data: JSON.stringify(data)
     }).then(response => {
+            setHash(md5(response.data));
+
             if(response.data.status === 200) {
                 setResponse(response.data.regex);
                 addToHistory(response.data.regex);

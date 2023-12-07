@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {FloatingLabel, Form} from "react-bootstrap";
 
 const RequestPrompt = ({ loading, onClick }) => {
     const [prompt, setPrompt] = useState("");
@@ -6,15 +7,16 @@ const RequestPrompt = ({ loading, onClick }) => {
     return (
         <div className={"content-panel primary-color"}>
             <div className="mb-3">
-                <label htmlFor="exampleFormControlTextarea1" className="form-label">Regex Request</label>
-                <textarea
-                    className="form-control"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                    value={prompt}
-                    disabled={loading}
-                    onChange={(event) => setPrompt(event.target.value)}
-                ></textarea>
+                <FloatingLabel controlId="floatingTextarea2" label="Regex Request">
+                    <Form.Control
+                        as="textarea"
+                        placeholder="Leave a comment here"
+                        style={{ height: '100px' }}
+                        value={prompt}
+                        disabled={loading}
+                        onChange={(event) => setPrompt(event.target.value)}
+                    />
+                </FloatingLabel>
             </div>
             <div>
                 <button

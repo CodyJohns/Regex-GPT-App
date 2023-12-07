@@ -1,16 +1,30 @@
+import {FloatingLabel, Form} from "react-bootstrap";
 
 const RegexResult = ({ result, setValue }) => {
     return (
         <div>
             <div className={"content-panel primary-color"}>
                 <div>
-                    <label htmlFor={"result"} className={"form-label"}>Result</label>
-                    <input
-                        type={"text"}
-                        className={"form-control"}
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Result"
+                        className={"mb-3"}
+                    >
+                        <Form.Control
+                            type="text"
+                            placeholder="Result"
+                            value={result}
+                            onChange={(event) => {console.log(event.target.value);setValue(event.target.value)}}
+                        />
+                    </FloatingLabel>
+                    <button
+                        className={"btn btn-secondary"}
+                        disabled={result === ""}
                         value={result}
-                        onChange={(event) => setValue(event.target.value)}
-                    />
+                        onClick={() => setValue("")}
+                    >
+                        Clear
+                    </button>
                 </div>
             </div>
         </div>

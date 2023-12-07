@@ -20,7 +20,7 @@ const AccountStatus = ({ accountData }) => {
                     <div>
                         <button
                             className={"btn btn-outline-warning"}>
-                            Upgrade Account
+                            Manage Account
                         </button>
                     </div>
                 </div>
