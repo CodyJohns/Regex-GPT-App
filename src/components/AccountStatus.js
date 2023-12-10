@@ -1,6 +1,6 @@
 import AlertBox from "./AlertBox";
 
-const AccountStatus = ({ accountData }) => {
+const AccountStatus = ({ accountData, reload }) => {
 
     const renderState = () => {
 
@@ -8,6 +8,14 @@ const AccountStatus = ({ accountData }) => {
             return (
                 <div className={"text-center"}>
                     <p>An error occurred.</p>
+                    <button
+                        className={"btn btn-outline-warning"}
+                        onClick={() => {
+                            reload();
+                        }}
+                    >
+                        Retry
+                    </button>
                 </div>
             );
         } else if(accountData && accountData.tier === "free") {

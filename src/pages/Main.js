@@ -39,6 +39,9 @@ const Main = () => {
                             <div className={"mb-3"}>
                                 <AccountStatus
                                     accountData={accountData}
+                                    reload={() => {
+                                        getAccountStatus(cookies.authtoken, accountData, setAccountData);
+                                    }}
                                 />
                             </div>
                             <div>
