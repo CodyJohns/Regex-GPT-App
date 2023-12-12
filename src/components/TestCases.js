@@ -2,6 +2,7 @@ import {useState} from "react";
 import TestCaseItem from "./TestCaseItem";
 import ButtonSelector from "./ButtonSelector";
 import ReplacementTestCaseItem from "./ReplacementTestCaseItem";
+import {Form} from 'react-bootstrap'
 
 const renderTestcases = (testcases, mode, updateItem, deleteItem) => {
     let arr = [];
@@ -45,10 +46,64 @@ const renderTestcases = (testcases, mode, updateItem, deleteItem) => {
     return arr;
 };
 
+const updateFlags = (id, flags, setFlags) => {
+    let flags_copy = flags.filter(x => true);
+
+    flags_copy.forEach(flag => {
+        if(flag.id === id) {
+            flag.enabled = !flag.enabled;
+        }
+    });
+
+    setFlags(flags_copy);
+};
+
+const renderFlags = (flags, setFlags) => {
+    let out = [];
+
+    flags.forEach(item => {
+        out.push(
+            <Form.Check
+                key={item.id}
+                inline
+                label={item.name}
+                checked={item.enabled}
+                onChange={event => updateFlags(item.id, flags, setFlags)}
+                name="regex-flags"
+                type={"checkbox"}
+            />
+        );
+    });
+
+    return out;
+};
+
+const regexFlags = [
+    {
+        id: 0,
+        name: "Global",
+        flag: "g",
+        enabled: true
+    },
+    {
+        id: 1,
+        name: "Case Insensitive",
+        flag: "i",
+        enabled: true
+    },
+    {
+        id: 2,
+        name: "Unicode",
+        flag: "u",
+        enabled: true
+    }
+];
+
 const TestCases = ({ value }) => {
     const [testcases, setTestcases] = useState([]);
     const [replacementValue, setReplacementValue] = useState("");
     const [mode, setMode] = useState("contains");
+    const [flags, setFlags] = useState(regexFlags);
 
     const addItem = () => {
         let new_tcases = testcases.concat([{
@@ -82,8 +137,19 @@ const TestCases = ({ value }) => {
         return count;
     };
 
+    const getFlagsEnabled = () => {
+        let out = "";
+
+        regexFlags.forEach(flag => {
+            if(flag.enabled)
+                out += flag.flag;
+        });
+
+        return out;
+    };
+
     const runTestCases = () => {
-        let exp = new RegExp(value, "gi");
+        let exp = new RegExp(value, getFlagsEnabled());
 
         let testcases_copy = testcases.filter(x => true);
 
@@ -121,6 +187,9 @@ const TestCases = ({ value }) => {
                                 </div>
                             </div> : <div></div>
                     }
+                </div>
+                <div className={"d-flex justify-content-evenly"}>
+                    { renderFlags(flags, setFlags) }
                 </div>
                 <label htmlFor={"tcases"} className={"form-label"}>Test Cases</label>
                 <div id={"tcases"}>
