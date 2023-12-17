@@ -1,9 +1,8 @@
 import axios from "axios";
 import {config} from "./Configuration";
-import {getMockLogin, getMockRegex} from "../tests/testing";
 import md5 from "md5";
 
-export const sendGPTRequest = (query, token, setResponse, setHash, addToHistory, setLoading, setError, setQueryErrorMessage) => {
+export const sendGPTRequest = (query, token, setResponse, setHash, setLoading, setError, setQueryErrorMessage) => {
     if(query === "")
         return;
 
@@ -22,11 +21,10 @@ export const sendGPTRequest = (query, token, setResponse, setHash, addToHistory,
         },
         data: JSON.stringify(data)
     }).then(response => {
-            setHash(md5(response.data));
+            setHash(md5(JSON.stringify(response)));
 
             if(response.data.status === 200) {
                 setResponse(response.data.regex);
-                addToHistory(response.data.regex);
                 setError(false);
                 setLoading(false);
             } else {
@@ -171,7 +169,7 @@ export const userRegister = (email, password, confpassword, passwordValid, setLo
         });
 };
 
-export const getAccountStatus = (authtoken, accountData, setAccountData) => {
+export const getAccountStatus = (authtoken, accountData, setAccountData, setHistory) => {
 
     let data = {
         authtoken: authtoken,
@@ -187,6 +185,7 @@ export const getAccountStatus = (authtoken, accountData, setAccountData) => {
     }).then(response => {
         if (response.data.status === 200) {
             setAccountData(response.data.data);
+            setHistory(response.data.data.history);
         } else {
             setAccountData({ error: true });
         }

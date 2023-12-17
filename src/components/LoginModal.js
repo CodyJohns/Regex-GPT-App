@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {useCookies} from "react-cookie";
 import Register from "./Register";
 
-const Modal = () => {
+const LoginModal = () => {
     const [cookies, setCookie] = useCookies(['authtoken']);
     const [visible, setVisible] = useState(cookies.authtoken === null || cookies.authtoken === undefined);
     const [loginFormEnabled, enableLoginForm] = useState(true);
@@ -42,4 +42,4 @@ const Modal = () => {
     );
 };
 
-export default Modal;
+export default LoginModal;

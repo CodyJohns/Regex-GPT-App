@@ -4,7 +4,7 @@ import History from "../components/History";
 import RegexResult from "../components/RegexResult";
 import {useEffect, useState} from "react";
 import {getAccountStatus, sendGPTRequest} from "../api/backend";
-import Modal from "../components/Modal";
+import LoginModal from "../components/LoginModal";
 import {CookiesProvider, useCookies} from "react-cookie";
 import AlertBox from "../components/AlertBox";
 import AccountStatus from "../components/AccountStatus";
@@ -20,19 +20,14 @@ const Main = () => {
     const [queryErrorMessage, setQueryErrorMessage] = useState("");
     const [accountData, setAccountData] = useState({});
 
-    const addHistory = (value) => {
-        let newHistory = history.concat([{ id: history.length, value: value }]);
-        setHistory(newHistory);
-    };
-
     useEffect(() => {
-        getAccountStatus(cookies.authtoken, accountData, setAccountData);
+        getAccountStatus(cookies.authtoken, accountData, setAccountData, setHistory);
     }, [cookies.authtoken, hash]);
 
     return (
         <CookiesProvider defaultSetOptions={{ path: '/' }}>
             <div>
-                <Modal />
+                <LoginModal />
                 <div className={"max-width-1600 pt-4"}>
                     <div className={"row"}>
                         <div className={"col-10 offset-1 col-sm-10 offset-sm-1 col-md-8 offset-md-2"}>
@@ -52,7 +47,6 @@ const Main = () => {
                                             cookies.authtoken,
                                             setRegex,
                                             setHash,
-                                            (response) => addHistory(response),
                                             setLoading,
                                             setError,
                                             setQueryErrorMessage
