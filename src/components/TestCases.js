@@ -157,7 +157,7 @@ const TestCases = ({ value }) => {
             if (testcases_copy[i].mode === "contains" && testcases_copy[i].mode === mode)
                 testcases_copy[i].pass = exp.test(testcases_copy[i].value);
             else if (testcases_copy[i].mode === "replacement" && testcases_copy[i].mode === mode)
-                testcases_copy[i].result = testcases_copy[i].value.replaceAll(exp, replacementValue);
+                testcases_copy[i].result = testcases_copy[i].value.replace(exp, replacementValue);
         }
 
         setTestcases(testcases_copy);
@@ -168,10 +168,23 @@ const TestCases = ({ value }) => {
             <div>
                 <ButtonSelector
                     mode={mode}
-                    setMode={setMode}
+                    setMode={(val) => {
+                        if(val === "contains") {
+                            flags[0].enabled = false;
+                            setFlags(flags);
+                        } else {
+                            flags[0].enabled = true;
+                            setFlags(flags);
+                        }
+
+                        setMode(val);
+                    }}
                 />
             </div>
             <div>
+                <div className={"d-flex justify-content-evenly"}>
+                    { renderFlags(flags, setFlags) }
+                </div>
                 <div>
                     {
                         (mode === "replacement") ?
@@ -187,9 +200,6 @@ const TestCases = ({ value }) => {
                                 </div>
                             </div> : <div></div>
                     }
-                </div>
-                <div className={"d-flex justify-content-evenly"}>
-                    { renderFlags(flags, setFlags) }
                 </div>
                 <label htmlFor={"tcases"} className={"form-label"}>Test Cases</label>
                 <div id={"tcases"}>
