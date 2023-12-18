@@ -1,4 +1,5 @@
 import AlertBox from "./AlertBox";
+import LoadingDialog from "./LoadingDialog";
 
 const AccountStatus = ({ accountData, reload }) => {
 
@@ -22,7 +23,7 @@ const AccountStatus = ({ accountData, reload }) => {
             return (
                 <div className={"d-flex justify-content-between"}>
                     <div className={"free-tier-message"}>
-                        Upgrade your account to avoid service limits.<br />
+                        Welcome, <u>{ accountData.email }</u><br />
                         <strong>{ accountData.daily_uses } of { accountData.max_uses } used today</strong>
                     </div>
                     <div>
@@ -50,9 +51,7 @@ const AccountStatus = ({ accountData, reload }) => {
         } else {
             return (
                 <div className={"text-center"}>
-                    <div className="spinner-border spinner-border-sm text-light" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
+                    <LoadingDialog />
                 </div>
             );
         }

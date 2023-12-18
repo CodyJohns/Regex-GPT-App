@@ -3,6 +3,7 @@ import AlertBox from "./AlertBox";
 import {useState} from "react";
 import {googleLogin, userLogin} from "../api/backend";
 import {useCookies} from "react-cookie";
+import LoadingDialog from "./LoadingDialog";
 
 const LoginOptions = ({ closeModal }) => {
     const [cookies, setCookie] = useCookies(['authtoken']);
@@ -77,9 +78,7 @@ const LoginOptions = ({ closeModal }) => {
                         >
                             {
                                 (!loading) ?  "Continue" :
-                                    <div className="spinner-border spinner-border-sm text-light" role="status">
-                                        <span className="visually-hidden">Loading...</span>
-                                    </div>
+                                    <LoadingDialog />
                             }
                         </button>
                     </div>

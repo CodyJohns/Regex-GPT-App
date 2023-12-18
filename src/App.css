@@ -63,7 +63,19 @@ input.failed {
 }
 
 .logo {
-    height: 80px;
+    height: 64px;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 900;
+}
+
+.main-content {
+    margin-top: 100px;
 }
 
 h2, h4 {
@@ -72,7 +84,7 @@ h2, h4 {
 
 .width-fixed {
     margin: 20px;
-    width: 400px;
+    width: 360px;
 }
 
 .bkg-blur {
@@ -143,6 +155,10 @@ h2, h4 {
 
 .free-tier-message {
     font-size: 14px;
+}
+
+u {
+    text-decoration-style: dotted;
 }
 
 .history-item {

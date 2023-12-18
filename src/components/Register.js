@@ -3,6 +3,7 @@ import AlertBox from "./AlertBox";
 import {userRegister} from "../api/backend";
 import {useCookies} from "react-cookie";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
+import LoadingDialog from "./LoadingDialog";
 
 const Register = ({ closeModal }) => {
     const [cookies, setCookie] = useCookies(['authtoken']);
@@ -76,9 +77,7 @@ const Register = ({ closeModal }) => {
                         >
                             {
                                 (!loading) ?  "Continue" :
-                                    <div className="spinner-border spinner-border-sm text-light" role="status">
-                                        <span className="visually-hidden">Loading...</span>
-                                    </div>
+                                    <LoadingDialog />
                             }
                         </button>
                     </div>

@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {FloatingLabel, Form} from "react-bootstrap";
+import LoadingDialog from "./LoadingDialog";
 
 const RequestPrompt = ({ loading, onClick }) => {
     const [prompt, setPrompt] = useState("");
@@ -28,9 +29,7 @@ const RequestPrompt = ({ loading, onClick }) => {
                 >
                     {
                         (!loading) ?  "Submit" :
-                            <div className="spinner-border spinner-border-sm text-light" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
+                            <LoadingDialog />
                     }
                 </button>
             </div>

@@ -83,7 +83,7 @@ const regexFlags = [
         id: 0,
         name: "Global",
         flag: "g",
-        enabled: true
+        enabled: false
     },
     {
         id: 1,
@@ -182,21 +182,25 @@ const TestCases = ({ value }) => {
                 />
             </div>
             <div>
-                <div className={"d-flex justify-content-evenly"}>
-                    { renderFlags(flags, setFlags) }
+                <div className={"content-panel secondary-color p-2"}>
+                    <div className={"d-flex justify-content-evenly"}>
+                        { renderFlags(flags, setFlags) }
+                    </div>
                 </div>
                 <div>
                     {
                         (mode === "replacement") ?
                             <div className={"mb-3"}>
-                                <label htmlFor={"replacement-value"} className={"form-label"}>Replacement Value</label>
-                                <div id={"replacement-value"}>
-                                    <input
-                                        type={"text"}
-                                        className={"form-control"}
-                                        value={replacementValue}
-                                        onChange={event => setReplacementValue(event.target.value)}
-                                    />
+                                <div className={"content-panel secondary-color p-2"}>
+                                    <label htmlFor={"replacement-value"} className={"form-label"}>Replacement Value</label>
+                                    <div id={"replacement-value"}>
+                                        <input
+                                            type={"text"}
+                                            className={"form-control"}
+                                            value={replacementValue}
+                                            onChange={event => setReplacementValue(event.target.value)}
+                                        />
+                                    </div>
                                 </div>
                             </div> : <div></div>
                     }
