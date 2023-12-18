@@ -77,7 +77,9 @@ const Register = ({ closeModal }) => {
                         >
                             {
                                 (!loading) ?  "Continue" :
-                                    <LoadingDialog />
+                                    <LoadingDialog
+                                        centered={true}
+                                    />
                             }
                         </button>
                     </div>

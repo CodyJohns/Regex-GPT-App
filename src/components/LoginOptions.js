@@ -36,7 +36,7 @@ const LoginOptions = ({ closeModal }) => {
                             setError(true);
                         }}
                         size={"large"}
-                        width={"368px"}
+                        width={"334px"}
                         theme={"filled_black"}
                     />
                 </GoogleOAuthProvider>
@@ -78,7 +78,9 @@ const LoginOptions = ({ closeModal }) => {
                         >
                             {
                                 (!loading) ?  "Continue" :
-                                    <LoadingDialog />
+                                    <LoadingDialog
+                                        centered={true}
+                                    />
                             }
                         </button>
                     </div>

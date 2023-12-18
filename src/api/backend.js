@@ -77,6 +77,14 @@ export const googleLogin = (credential, setLoading, setError, setResponseMsg, co
 
 export const userLogin = (id, password, setLoading, setError, setResponseMsg, completeLogin) => {
     setLoading(true);
+    setError(false);
+
+    if(id === "" || password === "") {
+        setResponseMsg("Please enter credentials.");
+        setError(true);
+        setLoading(false);
+        return;
+    }
 
     let data = {
         id: id,
