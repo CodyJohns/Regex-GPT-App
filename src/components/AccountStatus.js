@@ -50,8 +50,10 @@ const AccountStatus = ({ accountData, reload }) => {
             );
         } else {
             return (
-                <div className={"text-center"}>
-                    <LoadingDialog />
+                <div>
+                    <LoadingDialog
+                        centered={true}
+                    />
                 </div>
             );
         }

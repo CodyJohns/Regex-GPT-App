@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const LoadingDialog = () => {
+const LoadingDialog = ({ centered = false }) => {
 
     const [provisioning, setProvisioning] = useState(false);
 
@@ -15,8 +15,10 @@ const LoadingDialog = () => {
         }
     }, []);
 
+    let getClasses = centered ? "d-flex justify-content-center" : "d-flex";
+
     return (
-        <div className={"d-flex"}>
+        <div className={getClasses}>
             <div className="spinner-border spinner-border-sm text-light mt-1 mb-1" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>
