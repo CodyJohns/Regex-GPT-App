@@ -33,7 +33,7 @@ const History = ({ data, setData, loadRegex }) => {
             <label htmlFor={"history"} className="form-label">History</label>
             <div id={"history"} className={"mb-3"}>
                 {
-                    (data.length > 0) ? renderHistory(data, loadRegex, 3) :
+                    (data.length > 0) ? renderHistory(data, loadRegex, data.length < 3 ? data.length : 3) :
                         <div>
                             <p>No history.</p>
                         </div>

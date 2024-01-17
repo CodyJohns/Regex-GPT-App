@@ -35,7 +35,7 @@ const Main = () => {
                                 <AccountStatus
                                     accountData={accountData}
                                     reload={() => {
-                                        getAccountStatus(cookies.authtoken, accountData, setAccountData);
+                                        getAccountStatus(cookies.authtoken, accountData, setAccountData, setHistory);
                                     }}
                                 />
                             </div>
