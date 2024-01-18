@@ -8,6 +8,7 @@ pipeline {
     environment {
         BUILD_NAME = 'ezbudget_reactjs'
         CI = false
+        OCI_CLI_SUPPRESS_FILE_PERMISSIONS_WARNING=True
     }
 
     stages {
@@ -19,7 +20,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'echo "Hello World!"'
+                sh '/home/ubuntu/bin/oci os ns get'
             }
         }
     }
