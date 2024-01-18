@@ -20,7 +20,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh '/home/ubuntu/bin/oci os ns get'
+                sh 'ls -lah'
+                sh '/home/ubuntu/bin/oci --version'
+                //sh '/home/ubuntu/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/'
             }
         }
     }
