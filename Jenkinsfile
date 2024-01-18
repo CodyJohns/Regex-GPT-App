@@ -8,7 +8,7 @@ pipeline {
     environment {
         BUILD_NAME = 'ezbudget_reactjs'
         CI = false
-        OCI_CLI_SUPPRESS_FILE_PERMISSIONS_WARNING=True
+        OCI_CLI_SUPPRESS_FILE_PERMISSIONS_WARNING = true
     }
 
     stages {
