@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         BUILD_NAME = 'ezbudget_reactjs'
+        CI = false
     }
 
     stages {
