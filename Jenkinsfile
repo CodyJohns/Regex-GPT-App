@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'yes | /var/lib/jenkins/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/'
+                sh '/var/lib/jenkins/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/ --overwrite'
             }
         }
     }
