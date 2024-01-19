@@ -20,8 +20,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'ls -lah'
-                sh '/home/ubuntu/bin/oci --version'
+                sh 'ls -lah build/'
+                sh '/var/lib/jenkins/user-shared/bin/oci --version'
                 //sh '/home/ubuntu/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/'
             }
         }
