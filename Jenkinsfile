@@ -26,6 +26,7 @@ pipeline {
                 sh '/var/lib/jenkins/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/ --overwrite --include *.js --content-type text/javascript'
                 sh '/var/lib/jenkins/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/ --overwrite --include *.png --content-type image/png'
                 sh '/var/lib/jenkins/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/ --overwrite --include *.ico --content-type image/vnd.microsoft.icon'
+                sh '/var/lib/jenkins/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/ --overwrite --include *asset-manifest.json --content-type application/json'
             }
         }
     }
