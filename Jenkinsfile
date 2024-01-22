@@ -6,9 +6,9 @@ pipeline {
     }
 
     environment {
-        BUILD_NAME = 'ezbudget_reactjs'
         CI = false
         OCI_CLI_SUPPRESS_FILE_PERMISSIONS_WARNING = true
+        GENERATE_SOURCEMAP = false
     }
 
     stages {
@@ -26,7 +26,6 @@ pipeline {
                 sh '/var/lib/jenkins/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/ --overwrite --include *.js --content-type text/javascript'
                 sh '/var/lib/jenkins/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/ --overwrite --include *.png --content-type image/png'
                 sh '/var/lib/jenkins/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/ --overwrite --include *.ico --content-type image/vnd.microsoft.icon'
-                sh '/var/lib/jenkins/bin/oci os object bulk-upload -ns axgl5hrae4r8 -bn public --src-dir build/ --overwrite --include *.map'
             }
         }
     }
