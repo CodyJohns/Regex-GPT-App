@@ -208,3 +208,7 @@ u {
     overflow-y: auto;
     max-height: 270px;
 }
+
+.account-modal {
+    height: 240px;
+}

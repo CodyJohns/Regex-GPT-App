@@ -1,7 +1,11 @@
 import AlertBox from "./AlertBox";
 import LoadingDialog from "./LoadingDialog";
+import ManageAccountModal from "./ManageAccountModal";
+import {useState} from "react";
 
 const AccountStatus = ({ accountData, reload }) => {
+
+    const [modalVisible, setVisible] = useState(false);
 
     const renderState = () => {
 
@@ -28,10 +32,19 @@ const AccountStatus = ({ accountData, reload }) => {
                     </div>
                     <div>
                         <button
-                            className={"btn btn-outline-warning"}>
+                            className={"btn btn-outline-warning"}
+                            onClick={() => {
+                                setVisible(true);
+                            }}
+                        >
                             Manage Account
                         </button>
                     </div>
+                    <ManageAccountModal
+                        visible={modalVisible}
+                        setVisible={setVisible}
+                        data={accountData} 
+                    />
                 </div>
             );
         } else if(accountData && accountData.tier === "paid") {
@@ -42,10 +55,19 @@ const AccountStatus = ({ accountData, reload }) => {
                     </div>
                     <div>
                         <button
-                            className={"btn btn-outline-info"}>
+                            className={"btn btn-outline-info"}
+                            onClick={() => {
+                                setVisible(true);
+                            }}
+                        >
                             Manage Account
                         </button>
                     </div>
+                    <ManageAccountModal
+                        visible={modalVisible}
+                        setVisible={setVisible}
+                        data={accountData} 
+                    />
                 </div>
             );
         } else {
