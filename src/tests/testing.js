@@ -31,3 +31,11 @@ export const getMockLogin = () => {
         });
     });
 };
+
+export const getMockStatus = () => {
+    return new Promise((resolve, reject) => {
+        resolve({
+            data: {"data":null,"message":"User must log in again.","status":404}
+        });
+    });
+};

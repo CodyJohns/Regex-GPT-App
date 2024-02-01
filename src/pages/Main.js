@@ -11,7 +11,7 @@ import AccountStatus from "../components/AccountStatus";
 import Footer from "../components/Footer";
 
 const Main = () => {
-    const [cookies, setCookie] = useCookies(['authtoken']);
+    const [cookies, setCookie, removeCookie] = useCookies(['authtoken']);
     const [regex, setRegex] = useState("");
     const [hash, setHash] = useState("");
     const [loading, setLoading] = useState(false);
@@ -20,8 +20,12 @@ const Main = () => {
     const [queryErrorMessage, setQueryErrorMessage] = useState("");
     const [accountData, setAccountData] = useState({});
 
+    const showLogin = () => {
+        removeCookie('authtoken');
+    };
+
     useEffect(() => {
-        getAccountStatus(cookies.authtoken, accountData, setAccountData, setHistory);
+        getAccountStatus(cookies.authtoken, accountData, setAccountData, setHistory, showLogin);
     }, [cookies.authtoken, hash]);
 
     return (
