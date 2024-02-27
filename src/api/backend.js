@@ -1,7 +1,6 @@
 import axios from "axios";
 import {config} from "./Configuration";
 import md5 from "md5";
-import { getMockStatus } from "../tests/testing";
 
 export const sendGPTRequest = (query, token, setResponse, setHash, setLoading, setError, setQueryErrorMessage) => {
     if(query === "")
@@ -78,6 +77,7 @@ export const googleLogin = (credential, setLoading, setError, setResponseMsg, co
 
 export const userLogin = (id, password, setLoading, setError, setResponseMsg, completeLogin) => {
     setLoading(true);
+    setResponseMsg("");
     setError(false);
 
     if(id === "" || password === "") {
