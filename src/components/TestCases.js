@@ -99,7 +99,7 @@ const regexFlags = [
     }
 ];
 
-const TestCases = ({ value }) => {
+const TestCases = ({ value, setError, setErrorMessage }) => {
     const [testcases, setTestcases] = useState([]);
     const [replacementValue, setReplacementValue] = useState("");
     const [mode, setMode] = useState("contains");
@@ -149,18 +149,26 @@ const TestCases = ({ value }) => {
     };
 
     const runTestCases = () => {
-        let exp = new RegExp(value, getFlagsEnabled());
+        setError(false);
+        setErrorMessage("");
 
-        let testcases_copy = testcases.filter(x => true);
+        try {
+            let exp = new RegExp(value, getFlagsEnabled());
 
-        for(let i = 0; i < testcases_copy.length; i++) {
-            if (testcases_copy[i].mode === "contains" && testcases_copy[i].mode === mode)
-                testcases_copy[i].pass = exp.test(testcases_copy[i].value);
-            else if (testcases_copy[i].mode === "replacement" && testcases_copy[i].mode === mode)
-                testcases_copy[i].result = testcases_copy[i].value.replace(exp, replacementValue);
+            let testcases_copy = testcases.filter(x => true);
+
+            for(let i = 0; i < testcases_copy.length; i++) {
+                if (testcases_copy[i].mode === "contains" && testcases_copy[i].mode === mode)
+                    testcases_copy[i].pass = exp.test(testcases_copy[i].value);
+                else if (testcases_copy[i].mode === "replacement" && testcases_copy[i].mode === mode)
+                    testcases_copy[i].result = testcases_copy[i].value.replace(exp, replacementValue);
+            }
+
+            setTestcases(testcases_copy);
+        } catch (error) {
+            setError(true);
+            setErrorMessage(error.message);
         }
-
-        setTestcases(testcases_copy);
     };
 
     return (

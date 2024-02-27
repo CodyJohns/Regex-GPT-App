@@ -82,6 +82,8 @@ const Main = () => {
                                 <div className={"col-12 col-sm-7"}>
                                     <TestCases
                                         value={regex}
+                                        setError={setError}
+                                        setErrorMessage={setQueryErrorMessage}
                                     />
                                 </div>
                                 <div className={"col-12 col-sm-5"}>

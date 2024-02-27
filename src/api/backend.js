@@ -192,7 +192,6 @@ export const getAccountStatus = (authtoken, accountData, setAccountData, setHist
         },
         data: JSON.stringify(data)
     }).then(response => {
-        console.log(response);
         if (response.data.status === 200) {
             setAccountData(response.data.data);
             setHistory(response.data.data.history);
