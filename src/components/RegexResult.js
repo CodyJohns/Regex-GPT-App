@@ -1,6 +1,13 @@
+import { useEffect, useState } from "react";
 import {FloatingLabel, Form} from "react-bootstrap";
 
 const RegexResult = ({ result, setValue }) => {
+    const [wasCopied, setCopied] = useState(false);
+
+    useEffect(() => {
+        setCopied(false);
+    }, [result]);
+
     return (
         <div>
             <div className={"content-panel primary-color"}>
@@ -17,14 +24,37 @@ const RegexResult = ({ result, setValue }) => {
                             onChange={(event) => {console.log(event.target.value);setValue(event.target.value)}}
                         />
                     </FloatingLabel>
-                    <button
-                        className={"btn btn-secondary"}
-                        disabled={result === ""}
-                        value={result}
-                        onClick={() => setValue("")}
-                    >
-                        Clear
-                    </button>
+                    <div class="d-flex">
+                        <div class="pe-3">
+                            <button
+                                className={"btn btn-primary"}
+                                disabled={result === ""}
+                                onClick={() => {
+                                    if (!navigator.clipboard)
+                                        return;
+
+                                    navigator.clipboard.writeText(result).then(function() {
+                                        setCopied(true);
+                                    }, function(err) {
+                                        console.error('Could not copy text: ', err);
+                                    });
+                                }}
+                            >
+                                {
+                                    (wasCopied) ? "Copied!" : "Copy"
+                                }
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                                className={"btn btn-secondary"}
+                                disabled={result === ""}
+                                onClick={() => setValue("")}
+                            >
+                                Clear
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
